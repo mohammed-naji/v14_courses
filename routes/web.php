@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CourseController;
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin', 'verified'])->group(function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
@@ -12,6 +13,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin', 'verifie
     Route::post('/settings', [AdminController::class, 'settings_data'])->name('settings_data');
 
     Route::resource('categories', CategoryController::class);
+    Route::resource('courses', CourseController::class);
 });
 
 Auth::routes(['verify' => true]);
