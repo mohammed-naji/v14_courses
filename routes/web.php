@@ -28,5 +28,7 @@ Route::get('/about', [SiteController::class, 'about'])->name('site.about');
 Route::get('/courses', [SiteController::class, 'courses'])->name('site.courses');
 Route::get('/courses/{slug}', [SiteController::class, 'course'])->name('site.course');
 Route::post('/courses/{slug}/review', [SiteController::class, 'review'])->name('site.review')->middleware('auth');
+Route::get('/courses/{slug}/enroll', [SiteController::class, 'enroll'])->name('site.enroll')->middleware('auth');
+Route::get('/courses/{slug}/payment', [SiteController::class, 'payment'])->name('site.payment')->middleware('auth');
 Route::get('/our-team', [SiteController::class, 'our_team'])->name('site.our_team');
 Route::get('/contact', [SiteController::class, 'contact'])->name('site.contact');
