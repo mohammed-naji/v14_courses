@@ -83,7 +83,7 @@
 
                     <h4 class="text-primary">${{ $course->price }}</h4>
 
-                    @if (Auth::user()->courses->find($course->id))
+                    @if (Auth::check() && Auth::user()->courses->find($course->id))
                         <p>you are already enrolled in this course</p>
                     @else
                         <a class="btn btn-primary" href="{{ route('site.enroll', $course->slug) }}">Enroll Now</a>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\TestController;
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin', 'verified'])->group(function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
@@ -32,3 +33,8 @@ Route::get('/courses/{slug}/enroll', [SiteController::class, 'enroll'])->name('s
 Route::get('/courses/{slug}/payment', [SiteController::class, 'payment'])->name('site.payment')->middleware('auth');
 Route::get('/our-team', [SiteController::class, 'our_team'])->name('site.our_team');
 Route::get('/contact', [SiteController::class, 'contact'])->name('site.contact');
+
+
+// Route for test only
+Route::get('/api-test', [TestController::class, 'test_api']);
+Route::get('/api-weather', [TestController::class, 'weather_api']);
