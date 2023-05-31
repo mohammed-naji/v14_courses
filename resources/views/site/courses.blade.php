@@ -90,7 +90,13 @@
                                 <small>({{ $finalstar }})</small>
                                 <small>({{ $course->reviews->count() ? $course->reviews->count() : 1 }})</small>
                             </div>
-                            <h5 class="mb-4">{{ $course->title }}</h5>
+
+                            {{-- @php
+                                $title = 'title_'.app()->currentLocale()
+                            @endphp --}}
+
+                            {{-- <h5 class="mb-4">{{ $course->$title }}</h5> --}}
+                            <h5 class="mb-4">{{ $course->trans_title }}</h5>
                         </div>
                         <div class="d-flex border-top">
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>{{ $course->instructor->name }}</small>

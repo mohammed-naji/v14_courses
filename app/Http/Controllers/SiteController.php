@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
-use App\Models\Payment;
-use App\Models\Review;
 use Exception;
+use App\Models\Course;
+use App\Models\Review;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller

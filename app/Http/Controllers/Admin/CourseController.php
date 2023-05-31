@@ -40,7 +40,8 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
+            'title_en' => 'required',
+            'title_ar' => 'required',
             'image' => 'required',
             'content' => 'required',
             'price' => 'required',
@@ -55,16 +56,23 @@ class CourseController extends Controller
         // $slug = strtolower($request->title);
         // $slug = str_replace(' ', '-', $slug);
 
-        $slug_count = Course::where('title', 'like', $request->title.'%')->count();
+        $slug_count = Course::where('title_en', 'like', $request->title_en.'%')->count();
 
         // dd($slug_count);
 
-        $slug = $slug_count == 0 ? Str::slug($request->title) : Str::slug($request->title) . '-'.$slug_count;
+        $slug = $slug_count == 0 ? Str::slug($request->title_en) : Str::slug($request->title_en) . '-'.$slug_count;
+
+        $title = json_encode([
+            'en' => $request->title_en,
+            'ar' => $request->title_ar,
+        ], JSON_UNESCAPED_UNICODE);
 
         // dd($slug);
 
         Course::create([
-            'title' => $request->title,
+            // 'title_en' => $request->title_en,
+            // 'title_ar' => $request->title_ar,
+            'title' => $title,
             'slug' => $slug,
             'image' => $img_name,
             'content' => $request->content,

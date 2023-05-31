@@ -1,11 +1,26 @@
 
-<div class="mb-3">
-    <label>Title</label>
-    <input type="text" class="form-control @error('title') is-invalid @enderror" placeholder="Title" value="{{ old('title', $course->title) }}" name="title">
-    <small class="form-text">To get any Icon Visit <a target="_blank" href="https://fontawesome.com/search?q=&o=r&m=free">FontAwesome</a> Icons</small>
-    @error('title')
-        <span class="invalid-feedback">{{ $message }}</span>
-    @enderror
+<div class="row">
+    <div class="col-md-6">
+        <div class="mb-3">
+            <label>English Title</label>
+            <input type="text" class="form-control @error('title_en') is-invalid @enderror" placeholder="English Title" value="{{ old('title_en', $course->title_en) }}" name="title_en">
+            <small class="form-text">To get any Icon Visit <a target="_blank" href="https://fontawesome.com/search?q=&o=r&m=free">FontAwesome</a> Icons</small>
+            @error('title_en')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="mb-3">
+            <label>Arabic Title</label>
+            <input type="text" class="form-control @error('title_ar') is-invalid @enderror" placeholder="Arabic Title" value="{{ old('title_ar', $course->title_ar) }}" name="title_ar">
+            <small class="form-text">To get any Icon Visit <a target="_blank" href="https://fontawesome.com/search?q=&o=r&m=free">FontAwesome</a> Icons</small>
+            @error('title_ar')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+    </div>
 </div>
 
 <div class="mb-3">

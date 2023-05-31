@@ -30,4 +30,20 @@ class Course extends Model
     {
         return $this->belongsToMany(User::class, 'mycourses');
     }
+
+    public function getTransTitleAttribute()
+    {
+        return json_decode($this->title, true)[app()->currentLocale()] ?? '';
+    }
+
+    public function getTitleEnAttribute()
+    {
+        return json_decode($this->title, true)['en'] ?? '';
+    }
+
+    public function getTitleArAttribute()
+    {
+        return json_decode($this->title, true)['ar'] ?? '';
+    }
+
 }

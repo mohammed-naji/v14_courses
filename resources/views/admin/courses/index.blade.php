@@ -25,7 +25,8 @@
     <tr>
         <td>{{ $course->id }}</td>
         <td><img src="{{ asset('uploads/'.$course->image) }}" width="80" alt=""></td>
-        <td>{{ $course->title }}</td>
+        {{-- <td>{{ json_decode($course->title, true)[app()->currentLocale()] ?? '' }}</td> --}}
+        <td>{{ $course->trans_title }}</td>
         <td>{{ $course->created_at->format('d F, Y - h:m:s A') }}</td>
         <td>
             <a class="btn btn-primary btn-sm" href="{{ route('admin.courses.edit', $course->id) }}">

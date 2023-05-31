@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->currentLocale() }}">
 
 <head>
     <meta charset="utf-8">
@@ -30,6 +30,21 @@
     <!-- Template Stylesheet -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
+    @if (app()->currentLocale() == 'ar')
+    <style>
+        body {
+            direction: rtl;
+            text-align: right;
+        }
+
+        .header-carousel .owl-nav {
+            left: 8%;
+            right: unset
+        }
+    </style>
+    @endif
+
+
     @yield('styles')
 </head>
 
@@ -55,10 +70,12 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="{{ route('site.index') }}" class="nav-item nav-link
                 {{ request()->routeIs('site.index') ? 'active' : '' }}
-                ">Home</a>
-                <a href="{{ route('site.about') }}" class="nav-item nav-link {{ request()->routeIs('site.about') ? 'active' : '' }}">About</a>
-                <a href="{{ route('site.courses') }}" class="nav-item nav-link {{ request()->routeIs('site.courses') ? 'active' : '' }}">Courses</a>
-                <a href="{{ route('site.our_team') }}" class="nav-item nav-link {{ request()->routeIs('site.our_team') ? 'active' : '' }}">Our Team</a>
+                ">
+    {{ __('site.home') }}
+            </a>
+                <a href="{{ route('site.about') }}" class="nav-item nav-link {{ request()->routeIs('site.about') ? 'active' : '' }}">{{ __('site.about') }}</a>
+                <a href="{{ route('site.courses') }}" class="nav-item nav-link {{ request()->routeIs('site.courses') ? 'active' : '' }}">{{ __('site.courses') }}</a>
+                <a href="{{ route('site.our_team') }}" class="nav-item nav-link {{ request()->routeIs('site.our_team') ? 'active' : '' }}">{{ __('site.team') }}</a>
                 {{-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-down m-0">
@@ -67,9 +84,30 @@
                         <a href="404.html" class="dropdown-item">404 Page</a>
                     </div>
                 </div> --}}
-                <a href="{{ route('site.contact') }}" class="nav-item nav-link {{ request()->routeIs('site.contact') ? 'active' : '' }}">Contact</a>
+                <a href="{{ route('site.contact') }}" class="nav-item nav-link {{ request()->routeIs('site.contact') ? 'active' : '' }}">{{ __('site.contact') }}</a>
+
+                {{-- <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Languages</a>
+                    <div class="dropdown-menu fade-down m-0">
+                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                        <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="dropdown-item">{{ $properties['native'] }}</a>
+                        @endforeach
+                    </div>
+                </div> --}}
+
+                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+
+                    @if (app()->currentLocale() != $localeCode)
+                    <a class="nav-item nav-link" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                        {{ $properties['native'] }}
+                    </a>
+                    @endif
+
+
+                @endforeach
+
             </div>
-            <a href="{{ route('login') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{ route('login') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">{{ __('site.join') }}<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
