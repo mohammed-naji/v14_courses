@@ -7,6 +7,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\TestNotificationController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::prefix(LaravelLocalization::setLocale())->group(function() {
@@ -44,3 +45,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route for test only
 Route::get('/api-test', [TestController::class, 'test_api']);
 Route::get('/api-weather', [TestController::class, 'weather_api']);
+
+Route::get('send', [TestNotificationController::class, 'send']);
+Route::get('read', [TestNotificationController::class, 'read']);
+Route::get('read/{id}', [TestNotificationController::class, 'read_notify']);
+Route::get('read-all', [TestNotificationController::class, 'read_all']);
