@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 
 class CourseController extends Controller
 {
@@ -17,6 +18,8 @@ class CourseController extends Controller
      */
     public function index()
     {
+        Gate::authorize('show_courses');
+
         $courses = Course::latest('id')->paginate(10);
 
         return view('admin.courses.index', compact('courses'));

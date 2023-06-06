@@ -61,7 +61,10 @@
                 </a>
                 <div id="collapseCategory" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        @can('show_categories')
                         <a class="collapse-item" href="{{ route('admin.categories.index') }}">Show All</a>
+                        @endcan
+
                         <a class="collapse-item" href="{{ route('admin.categories.create') }}">Add New</a>
                     </div>
                 </div>
@@ -147,6 +150,22 @@
                     <i class="fas fa-users"></i>
                     <span>Students</span></a>
             </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRole"
+                    aria-expanded="true" aria-controls="collapseRole">
+                    <i class="fas fa-heart fa-lock"></i>
+                    <span>Roles</span>
+                </a>
+                <div id="collapseRole" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('admin.roles.index') }}">Show All</a>
+                        <a class="collapse-item" href="{{ route('admin.roles.create') }}">Add New</a>
+                    </div>
+                </div>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

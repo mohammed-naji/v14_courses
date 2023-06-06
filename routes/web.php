@@ -7,6 +7,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\TestNotificationController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -21,6 +22,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin', 'verifie
 
     Route::resource('categories', CategoryController::class);
     Route::resource('courses', CourseController::class);
+    Route::resource('roles', RoleController::class);
 });
 
 Auth::routes(['verify' => true]);

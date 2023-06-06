@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {
@@ -14,6 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        Gate::authorize('show_categories');
+
         $categories = Category::latest('id')->paginate(10);
 
         return view('admin.categories.index', compact('categories'));
